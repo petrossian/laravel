@@ -18,6 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- font awesome 4.7 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- jQuery cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
@@ -61,6 +65,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-sign-out"></i>
                                         {{ __('Logout') }}
                                     </a>
 
@@ -74,10 +79,13 @@
                 </div>
             </div>
         </nav>
-
+        @if(Auth::check())
+            @include('dashboard')
+        @endIf
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    <script src="/js/script.js"></script>
 </body>
 </html>
