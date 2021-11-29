@@ -11,7 +11,6 @@ class Post extends Model
 
     protected $fillable = [
         'user_id',
-        'category_id',
         'title',
         'body'
     ];
@@ -20,5 +19,8 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    
+    public function categories(){
+        return $this->belongsToMany(Category::class);
+    }
+
 }

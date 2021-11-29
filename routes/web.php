@@ -14,6 +14,7 @@ use App\Http\Controllers\PostsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Middleware\PostMiddlewar;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,4 +25,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/account/{id}', [App\Http\Controllers\HomeController::class, 'account'])->name('account');
 
-Route::resource('/posts', PostsController::class);
+Route::resource('/posts', PostsController::class)->middleware(PostMiddlewar::class);

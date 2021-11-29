@@ -2,7 +2,37 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">
+                    @if(auth()->user()->profile_image->file != 'NULL')
+                        <div style="
+                            display:block;
+                            width: 40px;
+                            height: 40px;
+                            border: 3px solid silver;
+                            border-radius: 50%;
+                            margin-right: 10px;
+                            background-image: url('/uploads/{{ auth()->user()->profile_image->file }}');
+                            background-position: center;
+                            background-size:cover;
+                            background-repeat: no-repeat;
+                        ">
+                        </div>
+                        @else
+                        <div style="
+                            display:block;
+                            width: 40px;
+                            height: 40px;
+                            border: 3px solid silver;
+                            border-radius: 50%;
+                            margin-right: 10px;
+                            background-image: url('/images/default.png');
+                            background-position: center;
+                            background-size:cover;
+                            background-repeat: no-repeat;
+                        ">
+                        </div>
+                    @endIf
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -18,7 +48,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/account">
+                            <a class="nav-link" href="/account/{{ auth()->user()->id }}">
                                 <i class="fa fa-user" title="User Account"></i>
                             </a>
                         </li>
